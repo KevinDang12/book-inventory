@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# Book Inventory
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React Book Inventory web app where you can access an inventory of books, add a new book entry, and download it as JSON or CSV.
 
-## Available Scripts
+## Setup
 
-In the project directory, you can run:
+To set up the project:
 
-### `npm start`
+### 1. MySQL Database
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Download MySQL Web Community Edition [here](https://dev.mysql.com/downloads/installer/).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+You can go ahead and install MySQL on your computer.
 
-### `npm test`
+Make sure to select the following options when installing.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![image](https://github.com/user-attachments/assets/0489ce47-4090-4268-9c3d-a4911d664a79)
 
-### `npm run build`
+Once MySQL is finished installing, you will have an empty workbench with no MySQL connections.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![image](https://github.com/user-attachments/assets/30172b3c-400a-4c2b-972e-5abc4c008cd6)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To set up a new connection, click on the plus sign next to "MySQL Connections". Enter your connection name, user name (leave as root or use any username), and password (If you did not set it up during installation)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![image](https://github.com/user-attachments/assets/1feb0e4f-e05c-461c-8023-bd35858e69f7)
 
-### `npm run eject`
+Test your connection and click "OK". Once you are connected to your MySQL database, run the following commands to set up the database and table:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+CREATE DATABASE inventory;
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+USE inventory;
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+CREATE TABLE inventory (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255),
+  author VARCHAR(255),
+  genre VARCHAR(255),
+  publication_date YEAR,
+  isbn VARCHAR(255)
+);
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Use the following network configuration:
 
-## Learn More
+![image](https://github.com/user-attachments/assets/657f278e-0174-4b68-95ed-bcf46f641fb5)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Type in your password for the MySQL server (you will use this password later):
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![image](https://github.com/user-attachments/assets/9b1f3a27-6152-4ccd-93d6-1edf104fc0bb)
 
-### Code Splitting
+### 2. Web App Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+If you don't have Node.js installed, download it [here](https://nodejs.org/en/download/package-manager).
 
-### Analyzing the Bundle Size
+Download VS Code to run the project [here](https://code.visualstudio.com/).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Once you have Node.js installed, download the repository by cloning it or downloading the .zip file.
 
-### Making a Progressive Web App
+Clone the repository using the following command:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+git clone https://github.com/KevinDang12/book-inventory.git
+```
 
-### Advanced Configuration
+After downloading the project and opening it in an IDE, open the terminal using ``` ctrl + ` ``` or click "Terminal" on the toolbar at the top of the window and click "New Terminal."
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+In your terminal run the following commands:
 
-### Deployment
+```
+npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+npm run build
 
-### `npm run build` fails to minify
+cd server
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+npm install
+```
+
+In ```server/server.js```, on line 36, replace the user and password with your MySQL username and password. If you didn't select a username, it should be root by default. Type in the password that you used for your MySQL server during installation.
+
+Once everything is set up run ```npm run dev``` to start the server. You should be able to find the website using the following URL [here](http://localhost:5000/).
