@@ -1,6 +1,5 @@
-import './App.css';
 import React, { useEffect, useState } from 'react';
-import './Inventory.css';
+import '../styles/Inventory.css';
 import axios from 'axios';
 import { useMediaQuery } from 'react-responsive';
 

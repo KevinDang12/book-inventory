@@ -29,12 +29,14 @@ app.get(/^(?!\/(data|download|filter|add-book)).+/, (req, res) => {
 });
 
 /**
- * Set up connection to the MySQL database
+ * Edit the following to connect to your MySQL database
+ * on your local machine. Replace the user and password
+ * with your MySQL username and password.
  */
 const db = mysql.createConnection({
     host: 'localhost',
-    user: 'root',
-    password: 'Mysql_911root',
+    user: 'root', // Add your MySQL username here
+    password: 'Mysql_911root', // Add your MySQL password here
     database: 'inventory',
 });
 
@@ -53,7 +55,7 @@ db.connect((err) => {
  * Retrive all the books from the database
  */
 app.get('/data', (req, res) => {
-    const sql = 'select * from inventory';
+    const sql = 'SELECT * FROM inventory';
     db.query(sql, (err, result) => {
         if (err) throw err;
         res.send(result);
@@ -88,7 +90,7 @@ app.get('/download', (req, res) => {
  */
 app.get('/filter', (req, res) => {
     const { filter, keywords } = req.query;
-    const sql = `select * from inventory where ${filter} like '%${keywords}%'`;
+    const sql = `SELECT * FROM inventory WHERE ${filter} LIKE '%${keywords}%'`;
     db.query(sql, (err, result) => {
         if (err) throw err;
         res.send(result);
@@ -101,14 +103,14 @@ app.get('/filter', (req, res) => {
 app.post('/add-book', (req, res) => {
     const { title, author, genre, date, isbn } = req.body.bookDetails;
 
-    const check = `select * from inventory where isbn = '${isbn}'`;
+    const check = `SELECT * FROM inventory WHERE isbn = '${isbn}'`;
     db.query(check, (err, result) => {
         if (err) throw err;
         if (result.length > 0) {
             res.send('ISBN already exists');
             return;
         } else {
-            const sql = `insert into inventory (title, author, genre, publication_date, isbn) values ('${title}', '${author}', '${genre}', '${date}', '${isbn}')`;
+            const sql = `INSERT INTO inventory (title, author, genre, publication_date, isbn) VALUES ('${title}', '${author}', '${genre}', '${date}', '${isbn}')`;
             db.query(sql, (err, result) => {
                 if (err) throw err;
                 res.send(result);

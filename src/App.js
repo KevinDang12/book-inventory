@@ -1,9 +1,9 @@
 import './App.css';
 import React from 'react';
-import Form from './Form';
+import Form from './components/Form';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Header from './Header';
-import Inventory from './Inventory';
+import Header from './components/Header';
+import Inventory from './components/Inventory';
 
 /**
  * Sets up the routes for the app
