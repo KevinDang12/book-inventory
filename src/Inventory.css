@@ -1,0 +1,46 @@
+.table {
+    width: 75%;
+    margin: auto;
+    border: 1px solid #ffffff;
+}
+
+td {
+    padding: 10px 0px;
+    border: 1px solid #ffffff;
+}
+
+input, select {
+    padding: 8px 20px;
+    margin: 8px 0;
+    border: 1px solid #949494;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.download {
+    margin-left: 20%;
+}
+
+@media screen and (max-width: 425px) {
+    .table {
+        width: 50%;
+    }
+
+    th {
+        font-size: 16px;
+        padding: 5px;
+    }
+
+    td {
+        padding: 5px 0px;
+        font-size: 12px;
+    }
+
+    input, select {
+        padding: 4px 5px;
+        margin: 8px 0;
+        border: 1px solid #949494;
+        border-radius: 2px;
+        box-sizing: border-box;
+    }
+}
