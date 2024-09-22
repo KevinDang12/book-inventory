@@ -36,7 +36,7 @@ app.get(/^(?!\/(data|download|filter|add-book)).+/, (req, res) => {
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root', // Add your MySQL username here
-    password: 'Mysql_911root', // Add your MySQL password here
+    password: '', // Add your MySQL password here
     database: 'inventory',
 });
 
